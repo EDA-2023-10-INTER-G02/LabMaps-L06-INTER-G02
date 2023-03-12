@@ -276,22 +276,13 @@ def addBookTitle(catalog, title):
     dicc_titulos = mp.newMap()
     
     for libro in lt.iterator(lista_libros_completa):
-        titulo = libro["original_title"]
+        titulo = libro["title"]
         
         if titulo not in dicc_titulos:
-            lista_libros_mismo_nombre = lt.newList()
-            mp.put(dicc_titulos,titulo,lista_libros_mismo_nombre)
-            lt.addLast(lista_libros_mismo_nombre,libro)
-            
-        else:
-            titulo_buscado = mp.get(dicc_titulos,title)
-            lt.addLast(titulo_buscado["value"],libro)
+            mp.put(dicc_titulos,titulo,libro)
             
     catalog["Titles"] = dicc_titulos
-          
-    return 1
-
-
+    
 # ==============================
 # Funciones de consulta
 # ==============================
@@ -333,12 +324,15 @@ def getBookByTitle(catalog, title):
     """
     Completar la descripcion de getBookByTitle
     """
+    addBookTitle(catalog,title)
     dicc_titulos = catalog["Titles"]
-    for llave in dicc_titulos:
-        print(llave)
-    
-    return 0
-
+    contiene = mp.contains(dicc_titulos,title)
+    if contiene:
+        info_libro = mp.get(dicc_titulos,title)
+        return info_libro
+    else:
+        return None
+        
 
 def booksSize(catalog):
     """
