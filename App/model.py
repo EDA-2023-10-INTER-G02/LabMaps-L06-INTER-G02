@@ -53,13 +53,15 @@ def newCatalog():
 
     Retorna el catalogo inicializado.
     """
-    # TODO lab 6, agregar llave de "titles" para el indice de libros
+    # agregar llave de "titles" para el indice de libros
     catalog = {'books': None,
                'bookIds': None,
                'authors': None,
                'tags': None,
                'tagIds': None,
-               'years': None}
+               'years': None,
+               'Titles': None
+               }
 
     """
     Esta lista contiene todo los libros encontrados
@@ -119,8 +121,8 @@ def newCatalog():
     Este indice crea un map cuya llave es el titulo del libro
     La columna 'titles' del archivo books.csv
     """
-    # TODO lab 6, agregar el ADT map con newMap()
-    catalog['titles'] = None
+    # agregar el ADT map con newMap()
+    catalog['Titles'] = mp.newMap()
 
     return catalog
 
@@ -270,7 +272,24 @@ def addBookTitle(catalog, title):
     """
     Completar la descripcion de addBookTitle
     """
-    pass
+    lista_libros_completa = catalog['books']
+    dicc_titulos = mp.newMap()
+    
+    for libro in lt.iterator(lista_libros_completa):
+        titulo = libro["original_title"]
+        
+        if titulo not in dicc_titulos:
+            lista_libros_mismo_nombre = lt.newList()
+            mp.put(dicc_titulos,titulo,lista_libros_mismo_nombre)
+            lt.addLast(lista_libros_mismo_nombre,libro)
+            
+        else:
+            titulo_buscado = mp.get(dicc_titulos,title)
+            lt.addLast(titulo_buscado["value"],libro)
+            
+    catalog["Titles"] = dicc_titulos
+          
+    return 1
 
 
 # ==============================
@@ -314,7 +333,11 @@ def getBookByTitle(catalog, title):
     """
     Completar la descripcion de getBookByTitle
     """
-    pass
+    dicc_titulos = catalog["Titles"]
+    for llave in dicc_titulos:
+        print(llave)
+    
+    return 0
 
 
 def booksSize(catalog):
