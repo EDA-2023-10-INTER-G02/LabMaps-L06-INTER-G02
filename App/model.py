@@ -122,7 +122,7 @@ def newCatalog():
     La columna 'titles' del archivo books.csv
     """
     # agregar el ADT map con newMap()
-    catalog['Titles'] = mp.newMap()
+    catalog['Titles'] = mp.newMap(cmpfunction=compareTitles)
 
     return catalog
 
@@ -356,11 +356,16 @@ def tagsSize(catalog):
 
 
 def titlesSize(catalog):
-    # TODO lab 6, retornar el numero de libros en el catalogo
+    # lab 6, retornar el numero de libros en el catalogo
     """
     Completar la descripcion de titlesSize
     """
-    pass
+    addBookTitle(catalog,"")
+    lista_de_titulos = mp.keySet(catalog["Titles"])
+    n = 0
+    for titulo in lt.iterator( lista_de_titulos):
+        n += 1
+    return n
 
 
 # ==============================
@@ -459,4 +464,10 @@ def compareTitles(title, book):
         int: retrona 0 si son iguales, 1 si el primero es mayor
         y -1 si el primero es menor
     """
-    pass
+    title_entry = me.getKey(book)
+    if (title == title_entry):
+        return 0
+    elif (title > title_entry):
+        return 1
+    else:
+        return -1

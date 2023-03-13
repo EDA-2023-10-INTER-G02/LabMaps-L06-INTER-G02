@@ -109,14 +109,14 @@ def printBestBooks(books):
         print('No se encontraron libros.\n')
 
 
-def printBooksbyTitle(books):
-    # TODO lab 6, completar la funcion para imprimir los libros
+def printBooksbyTitle(books,size):
+    #lab 6, completar la funcion para imprimir los libros
     """
     Completar la descripcion de printBooksbyTitle
     """
     if books != None:
         book = books["value"]
-        print("Se encontró la siguiente información:\n")
+        print("De los " +str(size) + " libros del catálogo se encontró la siguiente información:\n")
         print("Título: " + book["original_title"])
         print("Autor(es): " + book["authors"])
         print("Año: " + book["original_publication_year"])
@@ -174,10 +174,11 @@ while True:
         printBooksbyTag(books)
 
     elif int(inputs[0]) == 6:
-        # TODO lab 6, conectar con las funciones del controlador e imprimir
+        #lab 6, conectar con las funciones del controlador e imprimir
         title = input("Nombre del libro a buscar: ")
         info_book = controller.getBooksByTitle(ctrlr, title)
-        printBooksbyTitle(info_book)
+        size = controller.booksSize(ctrlr)
+        printBooksbyTitle(info_book,size)
         # controller.titleSize(ctrlr)
         
         pass

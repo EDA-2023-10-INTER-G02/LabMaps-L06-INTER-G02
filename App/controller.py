@@ -58,7 +58,7 @@ def loadData(control):
 
 
 def loadBooks(control):
-    # TODO lab 6, incluir el indice de libros por titulo con ADT Map
+    #lab 6, incluir el indice de libros por titulo con ADT Map
     """
     Carga los libros del archivo. Por cada libro se indica al
     modelo que debe adicionarlo al catalogo.
@@ -156,7 +156,7 @@ def getBooksYear(control, year):
 
 
 def getBooksByTitle(control, title):
-    # TODO lab 6, conectar con la funcion model.getBooksByTitle()
+    #lab 6, conectar con la funcion model.getBooksByTitle()
     """
     Completar la descripcion de getBooksByTittle
     """
@@ -169,4 +169,5 @@ def titlesSize(control):
     """
     Completar la descripcion de titlesSize
     """
-    pass
+    size = model.titlesSize(control)
+    return size
