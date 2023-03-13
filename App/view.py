@@ -114,7 +114,18 @@ def printBooksbyTitle(books):
     """
     Completar la descripcion de printBooksbyTitle
     """
-    pass
+    if books != None:
+        book = books["value"]
+        print("Se encontró la siguiente información:\n")
+        print("Título: " + book["original_title"])
+        print("Autor(es): " + book["authors"])
+        print("Año: " + book["original_publication_year"])
+        print("ISBN: " + book["isbn"])
+        print("Idioma: " + book["language_code"])
+        print("Puntuación promedio: " + book["average_rating"] + "\n")
+        
+    else:
+        print("No se encontró el libro :( \n ")
 
 # Menu de opciones
 
@@ -166,7 +177,7 @@ while True:
         # TODO lab 6, conectar con las funciones del controlador e imprimir
         title = input("Nombre del libro a buscar: ")
         info_book = controller.getBooksByTitle(ctrlr, title)
-        print(info_book)
+        printBooksbyTitle(info_book)
         # controller.titleSize(ctrlr)
         
         pass
