@@ -282,11 +282,10 @@ def addBookTitle(catalog, title):
             mp.put(dicc_titulos,titulo,libro)
             
     catalog["Titles"] = dicc_titulos
-    
+       
 # ==============================
 # Funciones de consulta
 # ==============================
-
 
 def getBooksByAuthor(catalog, authorname):
     """
